@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const { Client } = require('pg'); // imports the pg module
 
 // supply the db name and location of the database
@@ -54,3 +55,12 @@ async function createUser({ username, password }) {
   module.exports = {
     // add createUser here!
   }
+=======
+const { Client } = require('pg');
+
+const client = new Client('postgres://localhost:5432/juicebox-dev');
+
+module.exports = {
+    client,
+}
+>>>>>>> bb6889920192653b4b563230c08e1de3b39d5833

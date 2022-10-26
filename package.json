@@ -4,10 +4,20 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+<<<<<<< HEAD
     "test": "echo \"Error: no test specified\" && exit 1", 
+=======
+    "test": "echo \"Error: no test specified\" && exit 1",
+>>>>>>> bb6889920192653b4b563230c08e1de3b39d5833
     "seed:dev": "nodemon ./db/seed.js"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "pg": "^8.8.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
 }
