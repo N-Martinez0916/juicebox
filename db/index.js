@@ -23,7 +23,13 @@ async function createUser({
 }
 
 async function getAllUsers() {
-  const { rows } = await client.query(`SELECT id, username, name, location, active FROM users;`);
+  const { rows } = await client.query(`
+  SELECT id,
+  username,
+  name,
+  location,
+  active FROM users;
+  `);
 
 
   return rows;
@@ -54,6 +60,14 @@ async function updateUser(id, fields = {}) {
       throw error;
     }
   }
+
+async function getUserById(userId) {
+  const {rows: [user]} = await client.query(`
+  UPDATE users
+  DROP CONSTRAIN password
+  WHERE EXISTS user
+  `)
+}
 async function createPost({
   authorId,
   title,
