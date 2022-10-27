@@ -2,7 +2,12 @@ const { Client } = require('pg') // imports the pg module
 
 const client = new Client('postgres://localhost:5432/juicebox-dev');
 
-async function createUser({ username, password, name, location }) {
+async function createUser({
+  username,
+  password,
+  name,
+  location
+}) {
   try {
     const {rows: [ user ]} = await client.query(`
       INSERT INTO users(username, password, name, location) 
@@ -49,12 +54,57 @@ async function updateUser(id, fields = {}) {
       throw error;
     }
   }
+async function createPost({
+  authorId,
+  title,
+  content
+}) {
+  try {
 
-console.log('getAllUsers',getAllUsers)
+  } catch (error) {
+    throw error;
+  }
+}
+
+async function updatePost (id, {
+  title,
+  content,
+  active
+}) {
+  try {
+
+  } catch (error) {
+    throw error
+  }
+}
+async function getAllPosts() {
+  try {
+
+  } catch (error) {
+    throw error
+  }
+}
+
+async function getPostsByUser(userId) {
+  try {
+    const { rows } = await client.query(`
+    SELECT * FROM posts
+    WHERE "authorId"=${ userId };
+    `);
+    return rows;
+  } catch (error) {
+    throw error
+  }
+}
+
 
 module.exports = {  
   client,
   createUser,
   getAllUsers,
   updateUser,
+  createPost,
+  updatePost,
+  getAllPosts,
+  getPostsByUser
 }
