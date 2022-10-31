@@ -126,17 +126,6 @@ async function createInitialPosts() {
   }
 }
 
-async function createTags() {
-  try {
-    console.log("Starting to create tags...")
-
-    await client.query(`
-    INSERT INTO tags(name)
-VALUES ('#tag'), ('#othertag'), ('#moretag')
-ON CONFLICT (name) DO NOTHING;
-    `)
-  }
-}
 
 async function rebuildDB() {
   try {

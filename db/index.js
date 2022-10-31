@@ -152,6 +152,34 @@ async function getPostsByUser(userId) {
   }
 }
 
+async function createTags() {
+  if (tagList.length === 0) { 
+    return; 
+  }
+
+  // need something like: $1), ($2), ($3 
+  const insertValues = tagList.map(
+    (_, index) => `$${index + 1}`).join('), (');
+  // then we can use: (${ insertValues }) in our string template
+
+  // need something like $1, $2, $3
+  const selectValues = tagList.map(
+    (_, index) => `$${index + 1}`).join(', ');
+
+  try {
+    const { rows } = await client.query(`
+    INSERT INTO tags(name)
+    VALUES ($1), ($2), ($3)
+    ON CONFLICT (name) DO NOTHING;`)
+    return;
+    (`SELECT * FROM tags
+    WHERE name
+    IN ($1, $2, $3);`)
+  } catch (error) {
+    throw error
+  }
+}
+
 module.exports = {  
   client,
   createUser,
@@ -161,5 +189,6 @@ module.exports = {
   createPost,
   updatePost,
   getAllPosts,
-  getPostsByUser
+  getPostsByUser,
+  createTags
 }
