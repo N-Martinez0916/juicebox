@@ -11,3 +11,12 @@ const tagsRouter = require('./tags');
 apiRouter.use('/tags', tagsRouter);
 
 module.exports = apiRouter;
+
+apiRouter.use((error, req, res, next) => {
+    res.send({
+      name: error.name,
+      message: error.message
+    });
+  });
+  
+  module.exports = apiRouter;
