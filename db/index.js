@@ -1,4 +1,5 @@
 const { Client } = require('pg') // imports the pg module
+const { DATABASE_URL = 'postgres://localhost:5432/juicebox-dev' } = process.env
 const client = new Client('postgres://localhost:5432/juicebox-dev');
 
 async function getAllUsers() {
